@@ -10,6 +10,7 @@ import { StudentDetailComponent } from './student-detail.component'
 import { TranslateModule } from '@ngx-translate/core';
 import { AddStudentComponent } from './add-student.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     StudentsRoutingModule,
     AgGridModule.withComponents([ButtonRendererComponent]),
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TabsModule.forRoot()
   ]
 })
 export class StudentsModule { }
