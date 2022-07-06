@@ -1,0 +1,10 @@
+{
+    "rtl": false,
+    "currentTheme": "ltr",
+    "login": {
+        "username": "User Name",
+        "password": "Password",
+        "header": "Login",
+        "register": "Register"
+    }
+}

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/" routerLinkActive="active">Alrtiqa App</a>
+
+        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+            <li class="nav-item" *ngIf="accountservice.user$ | async as user">
+                <a class="nav-link" [class.disabled]="user.roleName !== 'Admin'" routerLink="/users"
+                    routerLinkActive="active">User Management</a>
+            </li>
+            <li class="nav-item" *ngIf="accountservice.user$ | async as user">
+                <a class="nav-link" [class.disabled]="user.roleName !== 'Admin'" routerLink="/students"
+                    routerLinkActive="active">Peers</a>
+            </li>
+        </ul>
+
+        <form class="d-flex">
+
+            <div *ngIf="accountservice.user$ | async as user" class="dropdown" dropdown>
+                <!-- <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{ user.userName | titlecase }}</a> -->
+                <div class="social-links" dropdownToggle><a><i class="fa fa-user fa-lg" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="dropdown-menu mt-3" *dropdownMenu>
+                    <div class="dropdown-item">Hi {{ user.userName | titlecase }}</div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" (click)="logout()">Logout</a>
+                </div>
+            </div>
+
+            <div class="dropdown mt-sm-2" dropdown>
+                <a class="dropdown-toggle text-light" dropdownToggle>
+                    <span [class]="flagClass"></span>{{selectedLang}}</a>
+                <div class="dropdown-menu mt-3" *dropdownMenu>
+                    <a class="dropdown-item" (click)="changeLanguage('en')"><span
+                            class="flag-icon flag-icon-gb"></span>English</a>
+                    <a class="dropdown-item" (click)="changeLanguage('ar')"><span
+                            class="flag-icon flag-icon-ae"></span>Arabic</a>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</nav>

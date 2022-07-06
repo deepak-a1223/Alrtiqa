@@ -1,0 +1,11 @@
+{
+    "rtl": true,
+    "currentTheme": "rtl",
+    "login": {
+        "username": "User Name",
+        "password": "كلمه السر",
+        "header": "تسجيل الدخول",
+        "register": "يسجل"
+    },
+    "register": {}
+}
