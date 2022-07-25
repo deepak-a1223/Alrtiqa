@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220713054044_studentmodule_init")]
+    partial class studentmodule_init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,93 +237,6 @@ namespace API.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("API.Entities.StudentAddress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("StudentAddress");
-                });
-
-            modelBuilder.Entity("API.Entities.StudentFamilyInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("FamilySituation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FatherCondition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HisNumberInFamily")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaidsNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MotherCondition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NumOfBrothers")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NumOfSisters")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ParentsCondition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UnEmployeeBrothers")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId")
-                        .IsUnique();
-
-                    b.ToTable("StudentFamily");
-                });
-
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.HasOne("API.Entities.Roles", "Roles")
@@ -352,28 +267,6 @@ namespace API.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("API.Entities.StudentAddress", b =>
-                {
-                    b.HasOne("API.Entities.Student", "Student")
-                        .WithMany("Addresses")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("API.Entities.StudentFamilyInfo", b =>
-                {
-                    b.HasOne("API.Entities.Student", "Student")
-                        .WithOne("StudentFamily")
-                        .HasForeignKey("API.Entities.StudentFamilyInfo", "StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("API.Entities.RelationShipType", b =>
                 {
                     b.Navigation("Persons");
@@ -386,12 +279,7 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Entities.Student", b =>
                 {
-                    b.Navigation("Addresses");
-
                     b.Navigation("Persons");
-
-                    b.Navigation("StudentFamily")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
